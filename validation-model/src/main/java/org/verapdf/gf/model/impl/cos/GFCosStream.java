@@ -147,7 +147,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 					decodeParms = decodeParms.at(i).get();
 					result.add(createFilter((COSName) COSName.fromValue(filter), decodeParms));
 				} else {
-					LOGGER.log(Level.WARNING, "Invalid decodeParms type. Ignoring decodeParms.");
+					LOGGER.log(Level.FINE, "Invalid decodeParms type. Ignoring decodeParms.");
 				}
 				i++;
 			}
@@ -161,7 +161,7 @@ public class GFCosStream extends GFCosDict implements CosStream {
 		} else if (decodeParms instanceof COSDictionary) {
 			return new GFCosFilter(filter, (COSDictionary) decodeParms);
 		} else {
-			LOGGER.log(Level.WARNING, "Invalid decodeParms type. Ignoring decodeParms.");
+			LOGGER.log(Level.FINE, "Invalid decodeParms type. Ignoring decodeParms.");
 			return new GFCosFilter(filter, null);
 		}
 	}

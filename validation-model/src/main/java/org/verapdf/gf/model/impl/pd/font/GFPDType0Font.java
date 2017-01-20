@@ -98,11 +98,11 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 	@Override
 	public Boolean getareRegistryOrderingCompatible() {
 		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
-			LOGGER.log(Level.SEVERE, "CID font dictionary doesn't contain CIDSystemInfo");
+			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
 			return Boolean.valueOf(false);
 		}
 		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
-			LOGGER.log(Level.SEVERE, "Type 0 font dictionary doesn't contain Encoding");
+			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
 			return Boolean.valueOf(false);
 		}
 		return Boolean
@@ -116,18 +116,18 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 	@Override
 	public Boolean getisSupplementCompatible() {
 		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo() == null) {
-			LOGGER.log(Level.SEVERE, "CID font dictionary doesn't contain CIDSystemInfo");
+			LOGGER.log(Level.FINE, "CID font dictionary doesn't contain CIDSystemInfo");
 			return Boolean.valueOf(false);
 		}
 		if (((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap() == null) {
-			LOGGER.log(Level.SEVERE, "Type 0 font dictionary doesn't contain Encoding");
+			LOGGER.log(Level.FINE, "Type 0 font dictionary doesn't contain Encoding");
 			return Boolean.valueOf(false);
 		}
 		Long fontSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCIDSystemInfo()
 				.getIntegerKey(ASAtom.SUPPLEMENT);
 		Long cMapSupplement = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getSupplement();
 		if (fontSupplement == null) {
-			LOGGER.log(Level.SEVERE, "CIDSystemInfo dictionary doesn't contain Supplement entry.");
+			LOGGER.log(Level.FINE, "CIDSystemInfo dictionary doesn't contain Supplement entry.");
 			return Boolean.valueOf(false);
 		}
 		return Boolean.valueOf(fontSupplement.longValue() >= cMapSupplement.longValue());
@@ -156,7 +156,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 				.getStringKey(ASAtom.REGISTRY);
 		String cMapRegistry = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getRegistry();
 		if (fontRegistry == null) {
-			LOGGER.log(Level.SEVERE, "CIDSystemInfo dictionary doesn't contain Registry entry.");
+			LOGGER.log(Level.FINE, "CIDSystemInfo dictionary doesn't contain Registry entry.");
 			return false;
 		}
 		return fontRegistry.equals(cMapRegistry);
@@ -167,7 +167,7 @@ public class GFPDType0Font extends GFPDFont implements PDType0Font {
 				.getStringKey(ASAtom.ORDERING);
 		String cMapOrdering = ((org.verapdf.pd.font.PDType0Font) this.pdFont).getCMap().getOrdering();
 		if (fontOrdering == null) {
-			LOGGER.log(Level.SEVERE, "CIDSystemInfo dictionary doesn't contain Ordering entry.");
+			LOGGER.log(Level.FINE, "CIDSystemInfo dictionary doesn't contain Ordering entry.");
 			return false;
 		}
 		return fontOrdering.equals(cMapOrdering);
