@@ -71,11 +71,16 @@ public class GFPDDeviceN extends GFPDColorSpace implements PDDeviceN {
 		Set<ASAtom> colorantDictionaryEntries = colorantsDict.getKeySet();
 		for (int i = 0; i < colorantsArray.size(); ++i) {
 			COSObject object = colorantsArray.get(i);
-			if (object != null && !colorantDictionaryEntries.contains(object.getName())) {
+			if (object != null && !isNone(object) &&
+					!colorantDictionaryEntries.contains(object.getName())) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	private static boolean isNone(COSObject obj) {
+		return obj.getType() == COSObjType.COS_NAME && obj.getName() == ASAtom.NONE;
 	}
 
 	@Override
